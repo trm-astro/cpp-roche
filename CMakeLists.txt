@@ -3,7 +3,7 @@ project(cpp-roche)
 
 include(ExternalProject)
 
-message("CMakeLists.txt for cpp-subs")
+message("CMakeLists.txt for cpp-roche")
 message("PROJECT_SOURCE_DIR: ${PROJECT_SOURCE_DIR}")
 message("CMAKE_BINARY_DIR: ${CMAKE_BINARY_DIR}")
 
@@ -74,28 +74,18 @@ target_include_directories(${PACKAGE_NAME}
 ############################################################
 # Check for and install dependencies
 ############################################################
-
-include("${CMAKE_BINARY_DIR}/Release/generators/conan_toolchain.cmake")
-
 # Configure the PLPLOT library
-
-include("${CMAKE_SOURCE_DIR}/../../cmake_common/plplot_install.cmake")
-
-find_package(SOFA REQUIRED)
-find_package(PCRE2 REQUIRED)
-find_package(SUBS REQUIRED)
-
-if (NOT SOFA_FOUND)
-    message(FATAL_ERROR "SOFA library not found.")
+if(NOT DEFINED CMAKE_COMMON)
+    set(CMAKE_COMMON ${PROJECT_SOURCE_DIR}/../../cmake_common)
 endif()
-if (NOT PCRE2_FOUND)
-    message(FATAL_ERROR "PCRE2 library not found.")
+if(NOT DEFINED PLPLOT_FOUND)
+    include("${CMAKE_COMMON}/plplot_install.cmake")
 endif()
-if (NOT PLPLOT_FOUND)
-    message(FATAL_ERROR "PLPLOT library not found.")
-endif()
-if (NOT SUBS_FOUND)
-    message(FATAL_ERROR "SUBS library not found.")
+
+find_package(BINARY REQUIRED)
+
+if (NOT BINARY_FOUND)
+    message(FATAL_ERROR "BINARY library not found.")
 endif()
 
 target_include_directories(${PACKAGE_NAME}
@@ -104,10 +94,7 @@ target_include_directories(${PACKAGE_NAME}
 )
 target_link_libraries(${PACKAGE_NAME} 
     PUBLIC 
-        sofa::sofa 
-        pcre2::pcre2
-        ${PLPLOT_LIB_DIR}/libplplotcxx.dylib
-        subs::subs
+        binary
 )
 
 
