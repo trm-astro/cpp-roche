@@ -63,3 +63,6 @@ src/Makefile
 src/Makefile.in
 src/gettime
 stamp-h1
+
+CMakeUserPresets.json
+build/
