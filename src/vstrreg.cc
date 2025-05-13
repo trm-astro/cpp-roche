@@ -49,8 +49,9 @@ void Roche::vstrreg(double q, double step, float vx[], float vy[], int n, int ty
     Subs::Vec3 r, v, rm, vm;
     int decr;
 
-    if(n < 2)
-	throw Roche::Roche_Error("Roche::vstrreg: need at least 2 points in vstrreg\n");
+    if(n < 2){
+		throw Roche::Roche_Error("Roche::vstrreg: need at least 2 points in vstrreg\n");
+	}
   
     rl1 = xl1(q);
 
