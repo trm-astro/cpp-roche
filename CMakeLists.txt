@@ -3,7 +3,7 @@ project(cpp-roche)
 
 include(ExternalProject)
 
-message("CMakeLists.txt for cpp-roche")
+message("\nCMakeLists.txt for cpp-roche")
 message("PROJECT_SOURCE_DIR: ${PROJECT_SOURCE_DIR}")
 message("CMAKE_BINARY_DIR: ${CMAKE_BINARY_DIR}")
 
@@ -117,3 +117,5 @@ set_target_properties(${PACKAGE_NAME} PROPERTIES
 include("${CMAKE_COMMON}/install_lib.cmake") # Get the generic install function
 
 install_lib(${PACKAGE_NAME})
+
+message("CMakeLists.txt for cpp-roche done \n")
